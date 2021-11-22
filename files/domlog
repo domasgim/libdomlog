@@ -1,0 +1,2 @@
+config domlog 'config'
+    option log_path '/var/log/domlogs'
