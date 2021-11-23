@@ -35,7 +35,6 @@ static char *get_proc_name(char *process_path) {
     size_t len = 0;
     ssize_t read;
 
-    // line = process_name
     while ((read = getline(&line, &len, fp)) != -1) {
         line[strcspn(line, "\n")] = 0; // wonderful function to remove tailing newline
         strncpy(proc_name, line, strlen(line));

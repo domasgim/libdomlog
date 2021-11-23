@@ -41,3 +41,62 @@ int domlog_log(int tag, char *message);
  * @return int 
  */
 int domlog_print(char *proc_name);
+
+/**
+ * @brief Get a Get UCI configuration entry object. 
+ * NOTE - the path string must be passed as a char[] array; char * causes seg fault. 
+ * More info https://dev.archive.openwrt.org/ticket/5848.html
+ * 
+ * @param path UCI option path
+ * @return char* 
+ */
+static char *uci_get_config_entry (char *path);
+
+/**
+ * @brief Get the running process name
+ * 
+ * @param process_path Process path /proc/<PID>/comm
+ * @return char* Process name string
+ */
+static char *get_proc_name(char *process_path);
+
+/**
+ * @brief Get log tag string value
+ * 
+ * @param tag tag enum
+ * @return char* Log tag string
+ */
+static char *get_tag_string(int tag);
+
+/**
+ * @brief Get the time string value
+ * 
+ * @return char* 
+ */
+static char *get_time_string();
+
+/**
+ * @brief Fill contents of the log event
+ * 
+ * @param event Event object
+ * @return int 
+ */
+static int fill_contents(struct domlog_event *event);
+
+/**
+ * @brief Check if a read line from a log contains a specified process name
+ * 
+ * @param line Log entry
+ * @param proc_name Process name to be checked against
+ * @return int 
+ */
+static int is_specified_proc(char *line, char *proc_name);
+
+/**
+ * @brief Write a log entry to a specified file
+ * 
+ * @param event Log event
+ * @param log_path Log file path
+ * @return int 
+ */
+static int write_log(struct domlog_event event, char *log_path);
